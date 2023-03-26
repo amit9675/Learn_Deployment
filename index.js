@@ -5,12 +5,13 @@ const { notesRouter } = require("./routes/noteroute")
 const { userRouter } = require("./routes/userroute")
 const cors = require("cors")
 const app = express()
+require('dotenv').config()
 app.use(express.json())
 app.use(cors())
 app.use("/user",userRouter)
 app.use(authorisation)
 app.use("/notes",notesRouter)
-app.listen(6900,async(req,res)=>{
+app.listen(process.env.Port,async(req,res)=>{
     try {
         await connection
         console.log(`server running`)
